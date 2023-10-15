@@ -1,0 +1,36 @@
+
+<div>
+    <form [formGroup]="form">
+    <label for="issuanceDateFilter">Фільтр за датою видачі:</label>
+    <input type="date" id="issuanceDateFilter" name="issuanceDateFilter" formControlName="issuanceDateFilter">
+    </form>
+</div>
+<button (click)="applyFilters()">Застосувати фільтр</button>
+<div class="container">
+    <h1>Загальна таблиця</h1>
+    <!-- Фільтри -->
+    <div>
+    <label for="issuanceDateFilter">Фільтр за датою видачі:</label>
+    <input type="date" id="issuanceDateFilter" [(ngModel)]="issuanceDateFilter">
+    </div>
+    <!-- Таблиця -->
+    <table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+        <th>Сума кредиту</th>
+        <th>Дата видачі</th>
+        <th>Дата повернення</th>
+        <!-- Додайте інші заголовки стовбців, які вам потрібні -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of filteredItems">
+        <td>{{ item.body }}</td>
+        <td>{{ item.issuance_date }}</td>
+        <td>{{ item.actual_return_date }}</td>
+        <!-- Відображення інших даних -->
+        </tr>
+    </tbody>
+    </table>
+</div>
+
