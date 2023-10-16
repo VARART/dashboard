@@ -31,14 +31,16 @@ export class ShortInfoComponent implements OnInit {
         if (existingMetric) {
           existingMetric.body += metric.body;
           existingMetric.percent += metric.percent;
-          existingMetric.totalIssuances++;
+          existingMetric.totalIssuances += 1; // Збільшуємо кількість виданих кредитів
           if (metric.actual_return_date) {
-            existingMetric.totalReturns++;
+            existingMetric.totalReturns += 1; // Збільшуємо кількість повернених кредитів
           }
         } else {
-          metric.totalIssuances = 1;
-          metric.totalReturns = metric.actual_return_date ? 1 : 0;
-          acc.push(metric);
+          acc.push({
+            ...metric,
+            totalIssuances: 1, // Початкова кількість виданих кредитів
+            totalReturns: metric.actual_return_date ? 1 : 0, // Початкова кількість повернених кредитів
+          });
         }
         return acc;
       }, [] as Metric[])
