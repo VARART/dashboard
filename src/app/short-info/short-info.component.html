@@ -1,16 +1,31 @@
 <div class="container">
     <h2>Коротка інформація</h2>
+
     <div class="row">
     <div class="col-md-6">
-        <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Загальна кількість виданих кредитів по місяцях</h5>
-            <p>{{ metrics.totalLoansByMonth }}</p>
-        </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <!-- Додайте інші метрики тут -->
+        <h3>Метрики по місяцях</h3>
+        <table class="table">
+        <thead>
+            <tr>
+            <th>Місяць</th>
+            <th>Загальна сума виданих кредитів</th>
+            <th>Середня сума виданих кредитів</th>
+            <th>Загальна сума нарахованих відсотків</th>
+            <th>Кількість виданих кредитів</th>
+            <th>Кількість повернених кредитів</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let metric of metrics">
+            <td>{{ metric.month }}</td>
+            <td>{{ metric.body }}</td>
+            <td>{{ metric.body / metric.totalIssuances | number:'1.2-2' }}</td>
+            <td>{{ metric.percent }}</td>
+            <td>{{ metric.totalIssuances }}</td>
+            <td>{{ metric.totalReturns }}</td>
+            </tr>
+        </tbody>
+        </table>
     </div>
     </div>
 </div>
