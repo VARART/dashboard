@@ -26,8 +26,8 @@ export class GeneralTableComponent implements OnInit {
       this.applyFilters();
     });
     this.apiService.getData().subscribe(data => {
-      this.items = data;
-      this.applyFilters();
+      this.items = data; // Оновлення значення змінної
+      this.applyFilters(); // Виклик функції applyFilters для фільтрації даних
     });
   }
   applyFilters() {
@@ -39,7 +39,7 @@ export class GeneralTableComponent implements OnInit {
     });
     this.form.valueChanges
       .pipe(
-        filter((filterValue) => !filterValue.issuanceDateFilter || this.item.some(item => item.issuance_date.includes(filterValue.issuanceDateFilter)))
+        filter((filterValue) => !filterValue.issuanceDateFilter || this.items.some(item => item.issuance_date.includes(filterValue.issuanceDateFilter)))
       )
       .subscribe((filteredData) => {
         this.financialData = filteredData;
