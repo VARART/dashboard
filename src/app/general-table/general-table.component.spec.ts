@@ -1,7 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GeneralTableComponent } from './general-table.component';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 describe('GeneralTableComponent', () => {
   let component: GeneralTableComponent;
   let fixture: ComponentFixture<GeneralTableComponent>;
