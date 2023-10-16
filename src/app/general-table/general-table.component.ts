@@ -33,7 +33,7 @@ export class GeneralTableComponent implements OnInit {
   applyFilters() {
     this.filteredItems = this.items.filter(item => {
       return (
-        !this.issuanceDateFilter && item.issuance_date.includes(this.issuanceDateFilter)
+        this.issuanceDateFilter === '' || item.issuance_date.includes(this.issuanceDateFilter)
         // Додайте інші фільтри за необхідністю
       );
     });
