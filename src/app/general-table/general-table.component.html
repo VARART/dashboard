@@ -1,26 +1,47 @@
 <div class="container text-center">
     <h1>Загальна таблиця</h1>
     <div class="col-md-12 text-center form-group row mb-3">
-    <label class="form-label col-sm-2 col-form-label" for="issuanceDateFilter">Фільтр за датою видачі:</label>
-    <div class="col-sm-8">
+    <label class="form-label col-sm-3 col-form-label" for="issuanceDateFilter">Фільтр за датою видачі:</label>
+    <div class="col-sm-9">
         <input class="form-control" type="date" id="issuanceDateFilter" [(ngModel)]="issuanceDateFilter">
     </div>
-    <button class="btn btn-primary col-sm-2" (click)="applyFilters()">Застосувати фільтр</button>
+    </div>
+    <div class="col-md-12 text-center form-group row mb-3">
+      <label class="form-label col-sm-3 col-form-label" for="actualReturnDateFilter">Фільтр за датою повернення:</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="date" id="actualReturnDateFilter" [(ngModel)]="actualReturnDateFilter">
+      </div>
+    </div>
+    <div class="col-md-12 form-group row mb-3">
+      <label class="form-label col-sm-3 col-form-label" for="isExpiredFilter">Тільки просрочені кредити:</label>
+      <div class="col-sm-9 align-self-center">
+        <input class="float-start" type="checkbox" id="isExpiredFilter" [(ngModel)]="isExpiredFilter">
+      </div>
+    </div>
+
+    <div class="col-md-12 text-center form-group mb-3">
+      <button class="btn btn-primary col-sm-2" (click)="applyFilters()">Застосувати фільтри</button>
     </div>
     <table class="table table-striped table-bordered">
     <thead>
     <tr>
+        <th>Імʼя користувача</th>
         <th>Сума кредиту</th>
         <th>Дата видачі</th>
-        <th>Дата повернення</th>
+        <th>Плануєма дата повернення</th>
+        <th>Фактична дата повернення</th>
+        <th>Відсоток</th>
         <!-- Додайте інші заголовки стовбців, які вам потрібні -->
     </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of filteredItems">
+        <td>{{ item.user }}</td>
         <td>{{ item.body }}</td>
         <td>{{ item.issuance_date }}</td>
+        <td>{{ item.return_date }}</td>
         <td>{{ item.actual_return_date }}</td>
+        <td>{{ item.percent }}</td>
         <!-- Відображення інших даних -->
     </tr>
     </tbody>

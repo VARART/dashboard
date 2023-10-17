@@ -19,7 +19,7 @@ export class ShortInfoComponent implements OnInit {
       mergeMap((group$) =>
         group$.pipe(
           map((item: any) => ({
-            month: item.issuance_date.split('-')[1],
+            month: item.issuance_date.split('-')[1] + '-' + item.issuance_date.split('-')[0],
             body: +item.body,
             percent: +item.percent,
             actual_return_date: item.actual_return_date,
