@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { MetricModel } from '../models/metric.model';
 import { map, groupBy, mergeMap, toArray, reduce } from 'rxjs/operators';
+import {CreditItemModel} from "../models/credit-item.model";
 
 @Component({
   selector: 'app-short-info',
@@ -8,17 +10,17 @@ import { map, groupBy, mergeMap, toArray, reduce } from 'rxjs/operators';
   styleUrls: ['./short-info.component.css'],
 })
 export class ShortInfoComponent implements OnInit {
-  metrics: Metric[] = [];
+  metrics: MetricModel[] = [];
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.apiService.getData().pipe(
-      mergeMap((data) => data as any[]),
-      groupBy((item: any) => item.issuance_date.split('-')[1]),
+      mergeMap((data) => data as CreditItemModel[]),
+      groupBy((item: CreditItemModel) => item.issuance_date.split('-')[1]),
       mergeMap((group$) =>
         group$.pipe(
-          map((item: any) => ({
+          map((item: CreditItemModel) => ({
             month: item.issuance_date.split('-')[1] + '-' + item.issuance_date.split('-')[0],
             body: +item.body,
             percent: +item.percent,
@@ -43,18 +45,10 @@ export class ShortInfoComponent implements OnInit {
           });
         }
         return acc;
-      }, [] as Metric[])
+      }, [] as MetricModel[])
     )
     .subscribe((metrics) => {
       this.metrics = metrics;
     })
   }
-};
-
-interface Metric {
-  month: string;
-  body: number;
-  percent: number;
-  totalIssuances: number;
-  totalReturns: number;
 }

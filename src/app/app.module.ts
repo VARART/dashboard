@@ -6,6 +6,7 @@ import { ShortInfoComponent } from './short-info/short-info.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import {NgbDatepicker, NgbInputDatepicker} from "@ng-bootstrap/ng-bootstrap";
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,11 +15,13 @@ import { AppRoutingModule } from './app-routing.module';
 
   ],
   imports: [
-    HttpClientModule, 
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
+    NgbDatepicker,
+    NgbInputDatepicker,
   ],
   providers: [],
 
