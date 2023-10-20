@@ -35,9 +35,8 @@ export class GeneralTableComponent implements OnInit {
         (this.issuanceDateFilter === '' || item.issuance_date.includes(this.issuanceDateFilter))
         && (this.actualReturnDateFilter === '' || item.actual_return_date && item.actual_return_date.includes(this.actualReturnDateFilter))
         && (!this.isExpiredFilter || !item.actual_return_date && new Date(item.return_date) < new Date() || item.actual_return_date && new Date(item.actual_return_date) > new Date(item.return_date))
-        // Додайте інші фільтри за необхідністю
       );
-    });
+    })
     this.form.valueChanges
       .pipe(
         filter((filterValue) => this.items.includes(filterValue))
@@ -47,7 +46,6 @@ export class GeneralTableComponent implements OnInit {
       });
   }
 };
-
 interface CreditItemModel {
   id: number;
   user: string;
